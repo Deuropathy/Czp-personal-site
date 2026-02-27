@@ -101,7 +101,9 @@ app.post('/api/refine', async (req, res) => {
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(DIST_DIR))
-  app.get('/*', (req, res) => {
+
+  app.get(/.*/, (req, res) => {
+
     return res.sendFile(path.join(DIST_DIR, 'index.html'))
   })
 }
